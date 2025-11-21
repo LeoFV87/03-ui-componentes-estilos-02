@@ -1,0 +1,57 @@
+<section class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8">
+  <h1 class="text-4xl font-bold text-gray-800 mb-4">
+    TailwindCSS en acción
+  </h1>
+
+  <p class="text-gray-600 mb-6 max-w-4xl text-center">
+    Este ejemplo demuestra cómo aplicar márgenes, colores, tamaños de texto y espaciado
+    con utilidades de Tailwind.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+
+    <div class="bg-white shadow rounded-lg p-4 flex flex-col items-center">
+      <i class="fa-solid fa-palette text-4xl text-blue-500 mb-2">
+
+      </i>
+      <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 24 24" fill="none" stroke="#e9d500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.622 17.897-10.68-2.913"></path><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"></path><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"></path></svg>
+      <h3 class="text-lg font-semibold mb-2">Colores</h3>
+      <p class="text-gray-500 text-center">Aplica paletas personalizadas mediante clases como
+        <code>bg-blue-500</code>.
+      </p>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 flex flex-col items-center">
+      <i class="fa-solid fa-squarespace text-4xl text-blue-500 mb-2"></i>
+      <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 24 24" fill="none" stroke="#000eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="6" height="14" x="3" y="5" rx="2"></rect><rect width="6" height="10" x="15" y="7" rx="2"></rect><path d="M3 2v20"></path><path d="M21 2v20"></path></svg>
+      <h3 class="text-lg font-semibold mb-2">Espaciado</h3>
+      <p class="text-gray-500 text-center">Controla márgenes y rellenos con <code>m-</code> y <code>p-</code>.</p>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 flex flex-col items-center">
+      <i class="fa-solid fa-border-all text-4xl text-blue-500 mb-2"></i>
+      <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 24 24" fill="none" stroke="#df00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="7" x="3" y="3" rx="1"></rect><rect width="9" height="7" x="3" y="14" rx="1"></rect><rect width="5" height="7" x="16" y="14" rx="1"></rect></svg>
+      <h3 class="text-lg font-semibold mb-2">Layout</h3>
+      <p class="text-gray-500 text-center">Crea estructuras flexibles con <code>flex</code> y <code>grid</code>.
+      </p>
+    </div>
+  </div>
+
+
+ <div class="flex flex-col items-center justify-center mt-10 space-y-4 w-full">
+  <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 text-center">
+    TailwindCSS Responsivo
+  </h1>
+
+  <button
+    class="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    Botón interactivo
+  </button>
+</div>
+
+
+
+<signal-box-component></signal-box-component>
+<signal-progress></signal-progress>
+</section>
+

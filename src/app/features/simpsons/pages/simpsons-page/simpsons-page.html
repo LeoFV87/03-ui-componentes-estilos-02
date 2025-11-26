@@ -1,0 +1,55 @@
+<section class="p-8">
+  <h1 class="text-3xl font-bold mb-2 text-center">The Simpsons API</h1>
+  <h2 class="text-lg text-center mb-6">Listado de personajes</h2>
+
+  @if (simpsonsResource.isLoading()) {
+    <div class="flex justify-center items-center h-64">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  }
+
+  @if (simpsonsResource.value(); as data) {
+    <div class="flex gap-2 items-center h-20 mb-4 justify-end">
+        <select class="select select-bordered w-32" 
+                (change)="charactersPerPage.set(+$any($event.target).value)">
+            <option value="10">10 por pág</option>
+            <option value="20">20 por pág</option>
+        </select>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ocupación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (personaje of data.results; track personaje.id) {
+            <tr>
+              <td>{{ personaje.id }}</td>
+              <td>{{ personaje.name }}</td>
+              <td>{{ personaje.occupation }}</td>
+              <td>
+                <span class="badge" 
+                      [class.badge-success]="personaje.status === 'Alive'"
+                      [class.badge-error]="personaje.status !== 'Alive'">
+                  {{ personaje.status }}
+                </span>
+              </td>
+              <td>
+                <a [routerLink]="['/simpsons', personaje.id]" class="btn btn-sm btn-primary">
+                  Ver Detalle
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

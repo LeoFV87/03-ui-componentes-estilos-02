@@ -1,28 +1,39 @@
-<section class="p-8">
-  <h1 class="text-3xl font-bold mb-2 text-center">The Simpsons API</h1>
-  <h2 class="text-lg text-center mb-6">Listado de personajes</h2>
+<app-breadcrumbs
+  [items]="[
+    { label: 'Inicio', link: '/' },
+    { label: 'Simpsons', link: '/simpsons' },
+    { label: 'Personajes' }
+  ]"
+></app-breadcrumbs>
+
+<section class="p-6">
+<app-hero-simpsons
+      [simpsonsCount]="simpsonsResource.value()?.count ?? 0"
+      [totalPages]="totalPages()"
+  ></app-hero-simpsons>
 
   @if (simpsonsResource.isLoading()) {
-    <div class="flex justify-center items-center h-64">
-      <span class="loading loading-spinner loading-lg"></span>
+    <div class="flex justify-center items-center h-32">
+      <span class="loading loading-spinner loading-lg text-primary"></span>
     </div>
   }
 
   @if (simpsonsResource.value(); as data) {
-    <div class="flex gap-2 items-center h-20 mb-4 justify-end">
-        <select class="select select-bordered w-32" 
-                (change)="charactersPerPage.set(+$any($event.target).value)">
-            <option value="10">10 por pág</option>
-            <option value="20">20 por pág</option>
-        </select>
-    </div>
+    @if (totalPages() > 0) {
+      <div class="flex justify-end mb-4">
+          <app-pagination
+              [pages]="totalPages()"
+              [currentPage]="paginationService.currentPage()"
+          />
+      </div>
+    }
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto bg-base-100 rounded-lg shadow-sm">
       <table class="table">
-        <thead>
+        <thead class="bg-base-200">
           <tr>
             <th>ID</th>
-            <th>Nombre</th>
+            <th>Personaje</th>
             <th>Ocupación</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -30,19 +41,33 @@
         </thead>
         <tbody>
           @for (personaje of data.results; track personaje.id) {
-            <tr>
-              <td>{{ personaje.id }}</td>
-              <td>{{ personaje.name }}</td>
+            <tr class="hover:bg-base-200/50 transition-colors">
+              <td class="font-bold text-gray-400">#{{ personaje.id }}</td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar">
+                    <div class="mask mask-squircle w-12 h-12">
+                      <img
+                        [src]="'https://cdn.thesimpsonsapi.com' + personaje.portrait_path"
+                        [alt]="personaje.name"
+                        onerror="this.src='https://placehold.co/100?text=?'"
+                      />
+                    </div>
+                  </div>
+                  <div class="font-bold">{{ personaje.name }}</div>
+                </div>
+              </td>
               <td>{{ personaje.occupation }}</td>
               <td>
-                <span class="badge" 
-                      [class.badge-success]="personaje.status === 'Alive'"
-                      [class.badge-error]="personaje.status !== 'Alive'">
+                <div class="badge gap-2"
+                     [class.badge-success]="personaje.status === 'Alive'"
+                     [class.badge-error]="personaje.status !== 'Alive'"
+                     [class.badge-outline]="true">
                   {{ personaje.status }}
-                </span>
+                </div>
               </td>
               <td>
-                <a [routerLink]="['/simpsons', personaje.id]" class="btn btn-sm btn-primary">
+                <a [routerLink]="['/simpsons', personaje.id]" class="btn btn-ghost btn-xs">
                   Ver Detalle
                 </a>
               </td>

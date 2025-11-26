@@ -1,0 +1,33 @@
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Para titlecase
+import { ThemeService } from '../../services/theme.service';
+
+@Component({
+  selector: 'app-theme-switcher',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="dropdown dropdown-end">
+      <button tabindex="0" class="btn btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M1.5 12H3m18 0h1.5M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M12 6a6 6 0 000 12a6 6 0 000-12z" />
+        </svg>
+        Tema: <span class="ml-1 capitalize">{{ themeService.currentTheme() }}</span>
+      </button>
+
+      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-40 shadow z-50">
+        @for (theme of themes; track theme) {
+          <li>
+            <button (click)="themeService.setTheme(theme)" [class.active]="themeService.currentTheme() === theme">
+              {{ theme | titlecase }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  `
+})
+export class ThemeSwitcher {
+  themeService = inject(ThemeService);
+  themes = ['light', 'dark', 'abyss'];
+}

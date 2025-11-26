@@ -8,14 +8,14 @@
   @if (personaje(); as p) {
     <div class="card bg-base-100 shadow-xl p-6 max-w-4xl mx-auto">
       <figure>
-        <img [src]="p.portrait_path" [alt]="p.name" class="w-48 rounded-lg" />
+        <img [src]="'https://cdn.thesimpsonsapi.com/500'+ p.portrait_path" [alt]="p.name" class="w-48 rounded-lg" />
       </figure>
       <div class="card-body">
         <h2 class="card-title text-2xl font-bold">{{ p.name }}</h2>
         <p class="text-gray-600 mb-2">{{ p.occupation }}</p>
         <p class="text-sm text-gray-500 mb-4">Estado: {{ p.status }}</p>
         <p class="mb-4">{{ p.description }}</p>
-        
+
         <div>
           <h3 class="font-semibold">Frases destacadas:</h3>
           <ul class="list-disc pl-6">
@@ -24,7 +24,7 @@
             }
           </ul>
         </div>
-        
+
         <div class="card-actions justify-end mt-4">
             <a routerLink="/simpsons" class="btn">Volver</a>
         </div>

@@ -21,14 +21,7 @@ export class SimpsonDetailPage {
   personaje = toSignal(
     this.route.paramMap.pipe(
       map(params => +params.get('id')!),
-      switchMap(id => this.service.getCharacterById(id)),
-      // ✅ LOG PARA DEBUGGING: Imprimir el objeto antes de convertirlo a señal
-      tap(p => {
-        if (p) {
-            console.log("Objeto Personaje Completo:", p);
-            console.log("Ruta de Imagen:", p.portrait_path);
-        }
-      })
+      switchMap(id => this.service.getCharacterById(id))
     ),
     { initialValue: null }
   );

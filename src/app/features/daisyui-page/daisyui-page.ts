@@ -4,14 +4,12 @@ import { Code } from './code/code';
 import { TableComponent } from './table-component/table-component';
 import { CardComponent } from './card-component/card-component';
 import { CardResponsive } from './card-responsive/card-responsive';
-import { Footer } from './footer/footer';
-import { Drawer } from './drawer/drawer';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-daisyui-page',
   standalone: true,
-  imports: [RouterModule,CommonModule, Code, TableComponent, CardComponent, CardResponsive, Footer, Drawer],
+  imports: [RouterModule,CommonModule, Code, TableComponent, CardComponent, CardResponsive],
   templateUrl: './daisyui-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
